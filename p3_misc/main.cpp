@@ -11,7 +11,8 @@
 - Post increment: i++ :: assign and then increase value
 - Pre increment: ++i :: increment and then assign value
 - Decrement operator: post decrement and pre-decrement
-
+- const: Promise not to modify the variable.
+- constexpr: Guarantee of variable being evaluated at compile time
 */
 
 #include <iostream>
@@ -20,6 +21,9 @@
 
 int main(){
     int a = 9;
+
+    const auto PI = 3.14;    // my value of pi - const value cannot be changed.
+    constexpr auto max_angle = 2*3.14;  // Max. value of angle depends on the value of variable PI. Evaluated at compile time and cannot be changed after that.
     
     std::cout<< a <<"\n";
 
