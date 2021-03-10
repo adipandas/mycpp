@@ -5,7 +5,14 @@ Some of my C++ codes done during the practice.
 
 ## How to use
 
-To use the codes, the procedure is pretty much the same unless specified otherwise.
+Install the following dependencies using the terminal.
+```
+sudo apt update
+sudo apt−get install g++
+sudo apt install build-essential
+```
+
+To use the codes provided in all the folders, the procedure is pretty much the same unless specified otherwise.
 
 You can build code in any folder using the terminal as follows:
 ```
