@@ -13,6 +13,7 @@
 - Decrement operator: post decrement and pre-decrement
 - const: Promise not to modify the variable.
 - constexpr: Guarantee of variable being evaluated at compile time
+- pointer:
 */
 
 #include <iostream>
@@ -128,4 +129,36 @@ int main(){
         my_while_var++;
     }
     std::cout<<"\n";
+
+
+    // pointer
+    int xx = 5;
+    int * ptr_xx = &xx;
+    std::cout << "value of xx: " << xx <<"\n";
+    std::cout << "Address of xx: " << &xx << "\n";
+    std::cout << "ptr_xx: " << ptr_xx << "\n";
+    std::cout << "Value of ptr_xx: " << *ptr_xx << "\n";
+
+    xx = 8;
+    std::cout << "New xx: " << xx << "\n";
+    std::cout << "Address of xx: " << &xx << "\n";
+    std::cout << "ptr_xx: " << ptr_xx << "\n";
+    std::cout << "Value of ptr_xx: " << *ptr_xx << "\n"; 
+
+    *ptr_xx = 10;
+    std::cout << "New xx: " << xx << "\n";
+    std::cout << "Address of xx: " << &xx << "\n";
+    std::cout << "ptr_xx: " << ptr_xx << "\n";
+    std::cout << "Value of ptr_xx: " << *ptr_xx << "\n"; 
+
+    // pointer to vectors/objects
+    std::vector<int> vec{1,2,3,4,5};
+    std::vector<int> * ptr_vec = &vec;
+    std::cout<<"Original vector: ";
+    for (auto v: vec){
+        std::cout<<v<<" ";
+    }
+    std::cout << "\n";
+    std::cout << "First element of the vector using pointer:" << (*ptr_vec)[0] << "\n";
+    
 }
