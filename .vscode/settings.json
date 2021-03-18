@@ -2,7 +2,6 @@
     "files.associations": {
         "stdexcept": "cpp",
         "cmath": "cpp",
-        "iostream": "cpp",
         "cctype": "cpp",
         "clocale": "cpp",
         "cstdarg": "cpp",
@@ -54,6 +53,7 @@
         "thread": "cpp",
         "cfenv": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "iostream": "cpp",
     }
 }
