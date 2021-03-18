@@ -163,18 +163,6 @@ int LinuxParser::RunningProcesses() {
    return 0;
 }
 
-// TODO: Read and return the number of jiffies for the system
-long LinuxParser::Jiffies() { return 0; }
-
-// TODO: Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid[[maybe_unused]]) { return 0; }
-
-// TODO: Read and return the number of active jiffies for the system
-long LinuxParser::ActiveJiffies() { return 0; }
-
-// TODO: Read and return the number of idle jiffies for the system
-long LinuxParser::IdleJiffies() { return 0; }
 
 // TODO: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() {
@@ -191,24 +179,34 @@ vector<string> LinuxParser::CpuUtilization() {
     }
   }
 
-// PrevIdle = previdle + previowait
-// Idle = idle + iowait
-
-// PrevNonIdle = prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal
-// NonIdle = user + nice + system + irq + softirq + steal
-
-// PrevTotal = PrevIdle + PrevNonIdle
-// Total = Idle + NonIdle
-
-// # differentiate: actual value minus the previous one
-// totald = Total - PrevTotal
-// idled = Idle - PrevIdle
-
-// CPU_Percentage = (totald - idled)/totald
+  // May need in future.
+  // PrevIdle = previdle + previowait
+  // Idle = idle + iowait
+  // PrevNonIdle = prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal
+  // NonIdle = user + nice + system + irq + softirq + steal
+  // PrevTotal = PrevIdle + PrevNonIdle
+  // Total = Idle + NonIdle
+  // # differentiate: actual value minus the previous one
+  // totald = Total - PrevTotal
+  // idled = Idle - PrevIdle
+  // CPU_Percentage = (totald - idled)/totald
 
    return {}; 
 }
 
+
+// TODO: Read and return the number of jiffies for the system
+long LinuxParser::Jiffies() { return 0; }
+
+// TODO: Read and return the number of active jiffies for a PID
+// REMOVE: [[maybe_unused]] once you define the function
+long LinuxParser::ActiveJiffies(int pid[[maybe_unused]]) { return 0; }
+
+// TODO: Read and return the number of active jiffies for the system
+long LinuxParser::ActiveJiffies() { return 0; }
+
+// TODO: Read and return the number of idle jiffies for the system
+long LinuxParser::IdleJiffies() { return 0; }
 
 // TODO: Read and return the command associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
