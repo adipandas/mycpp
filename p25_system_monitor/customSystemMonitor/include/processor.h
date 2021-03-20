@@ -3,24 +3,13 @@
 
 #include <vector>
 #include <string>
+#include "linux_parser.h"
 
 class Processor {
  public:
-  Processor();  // constructor
-
   float Utilization();  // TODO: See src/processor.cpp
-
   // TODO: Declare any necessary private members
-  private:
-    std::vector<float> ConvertVectorStringToFloat(const std::vector<std::string> &);
-    
-    std::vector<float> cpuUtilization{};
-    
-    std::vector<float> previousCpuUtilization{};   // previous CPU utilization
- 
-    // loads on CPU
-    float Idle(const std::vector<float> & cpuUtilization) const;
-    float NonIdle(const std::vector<float> & cpuUtilization) const;
+ private:
+  float total_jiffies{0.0}, total_jiffies_prev{0.0}, idle_jiffies{0.0}, util_jiffies{0.0}, util_jiffies_prev{0.0}, usage{0.0};
 };
-
 #endif

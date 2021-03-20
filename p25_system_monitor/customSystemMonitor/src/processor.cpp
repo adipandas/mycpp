@@ -1,61 +1,25 @@
-#include "linux_parser.h"
 #include "processor.h"
-
-using namespace LinuxParser;
-
-std::vector<float> Processor::ConvertVectorStringToFloat(const std::vector<std::string>  & vecString){ // convert vector of strings to vector of floats
-    std::vector<float> vecFloat{};
-    for (auto s : vecString){
-        vecFloat.push_back(std::stof(s));
-    }
-    
-    return vecFloat;
-}
-
-
-float Processor::Idle(const std::vector<float> & cpuUtilization) const {
-    return cpuUtilization[CPUStates::kIdle_] + cpuUtilization[CPUStates::kIOwait_];
-}
-
-float Processor::NonIdle(const std::vector<float> & cpuUtilization) const{
-    float nonIdle = cpuUtilization[CPUStates::kUser_] + cpuUtilization[CPUStates::kNice_] + cpuUtilization[CPUStates::kSystem_] + cpuUtilization[CPUStates::kIRQ_] + cpuUtilization[CPUStates::kSoftIRQ_]+cpuUtilization[CPUStates::kSteal_];
-    return nonIdle;
-}
-
-
-Processor::Processor(){
-    std::vector<std::string> _utilization{};
-    while(_utilization.empty()){
-        _utilization = CpuUtilization();
-    }
-    previousCpuUtilization = ConvertVectorStringToFloat(_utilization);
-}
 
 
 // TODO: Return the aggregate CPU utilization
-// Reference: https://stackoverflow.com/a/23376195
-float Processor::Utilization() {
-
-    std::vector<std::string> _utilization{};
-    while(_utilization.empty()){
-        _utilization = CpuUtilization();
-    }
-
-    cpuUtilization = ConvertVectorStringToFloat(_utilization);
-    float _CurrentIdle = Idle(cpuUtilization);
-    float _CurrentNonIdle = NonIdle(cpuUtilization);
-    float _CurrentTotal = _CurrentIdle + _CurrentNonIdle;
-    float _PreviousIdle = Idle(previousCpuUtilization);
-    float _PreviousNonIdle = NonIdle(previousCpuUtilization);
-    float _PreviousTotal = _PreviousIdle + _PreviousNonIdle;
-    
-    float _TotalLoad = _CurrentTotal - _PreviousTotal;
-    float _Idled = _CurrentIdle - _PreviousIdle;
-    
-    float utilization_percent = (_TotalLoad - _Idled)/_TotalLoad;
-
-    // float utilization_percent = (_CurrentTotal - _CurrentIdle)/_CurrentTotal;
-    
-    previousCpuUtilization = cpuUtilization;
-    return utilization_percent; 
+float Processor::Utilization() { 
+  std::vector<std::string> jiffies_list = LinuxParser::CpuUtilization();
+  
+  for (size_t i{0}; i<jiffies_list.size();i++){
+    if (i!=LinuxParser::kGuest_ and i!=LinuxParser::kGuestNice_){ total_jiffies += std::stof(jiffies_list[i]); }
+    if (i==LinuxParser::kIdle_ or i==LinuxParser::kIOwait_){ idle_jiffies += std::stof(jiffies_list[i]); }
+  }
+  
+  util_jiffies = total_jiffies - idle_jiffies;
+  
+  bool curr_util = true;
+  if (curr_util){
+    usage = (util_jiffies-util_jiffies_prev)/(total_jiffies-total_jiffies_prev);
+    total_jiffies_prev = total_jiffies;
+    util_jiffies_prev = util_jiffies;
+  }
+  else{
+    usage = util_jiffies/total_jiffies;
+  }
+  return usage; 
 }
