@@ -45,7 +45,6 @@ int main(){
     t2.join();
     t3.join();
 
-
     std::thread t4 = std::thread(VehicleThreadClass(10));
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
     std::cout << "Finished work in main.\n";

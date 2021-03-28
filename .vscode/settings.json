@@ -55,5 +55,6 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "iostream": "cpp",
+        "future": "cpp"
     }
 }
