@@ -24,7 +24,7 @@ g++ main.cpp
 
 Follow the content of this folder in the following order:
 
-1. [oop - some CPP fundamentals and object oriented programming](oop/)
+1. [oop - Some CPP fundamentals and object oriented programming](oop/)
 2. [Memory management fundamentals](memory_management/)
 3. [Concurrency Fundamentals](concurrency/)
 
