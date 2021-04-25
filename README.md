@@ -28,5 +28,6 @@ g++ main.cpp
 1. [oop - Some CPP fundamentals and object oriented programming](oop/)
 2. [Memory management fundamentals](memory_management/)
 3. [Concurrency Fundamentals](concurrency/)
+4. [Simple CMAKE examples](cmake_examples/)
 
 ###### Note: These codes were tested on Ubuntu 18.04
